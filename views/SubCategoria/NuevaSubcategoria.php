@@ -1,36 +1,46 @@
-<div style="height: 5vh"></div>
-<?php echo form_open('Subcategoria/SubInCategoria'); ?>  
-<input type="hidden" name="codigoCategoria" value="<?= $codcategoria ?>">
-<h1 class="h1 orange-text text-center">subcategoria de <?= $nombrecategoria ?></h1>
-<div style="height: 5vh"></div>
-<div class="flex-center">
-    <table>
-        <tr>
-            <td>
-
-                <div class="md-form">
-                    <i class="fa fa-folder-o fa-2x prefix "></i>
-                    <input type="text" id="form1" class="form-control" name="NombreSubcategoria">
-                    <label for="form1" class="">Subcategoria</label>
+<section class="content">
+    <div style="height: 2vh"></div>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-xs-7">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title box-warning"></h3>
                 </div>
-            </td>
-        </tr>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <?php echo form_open('Subcategoria/SubInCategoria'); ?> 
+                    <input type="hidden" name="codigoCategoria" value="<?= $codcategoria ?>">
+                    <h1 class="h1 orange-text text-center">subcategoria de <?= $nombrecategoria ?></h1>
 
-        <tr>
-            <td>
+                    <div class="form-group">
+                        <i class="fa fa-folder-o fa-2x prefix "></i>
+                        <label for="form1" class="">Subcategoria</label>
+                        <input type="text" id="form1" class="form-control" name="NombreSubcategoria">
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-pencil-square-o fa-2x prefix "></i>
+                        <label for="form1" class="">Detalle de Subcategoria </label><br>
 
-                <i class="fa fa-pencil-square-o fa-2x prefix "></i>
-                <label for="form1" class="">Detalle de Subcategoria</label>
+                        <textarea class="form-control" placeholder="Detalle Subcategoria" name="detalSubCategoria"></textarea> 
 
-                <textarea rows="10" cols="90" placeholder="Detalle Subcategoria" name="detalSubCategoria"></textarea> 
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn bg-orange"><i class='fa fa-send'> Crear SubCategoria</i></button>
 
-            </td>
-        </tr>
+                    </div>
 
-        <tr><td> <button type="submit" class="btn btn-orange waves-effect orange" ><i class='fa fa-send'> Crear SubCategoria</i></button></td></tr>
-    </table>
-</div>
-<?php echo form_close(); ?>
+                    <?php echo form_close(); ?>
+                </div>
+            </div>
+
+
+
+        </div>
+        <!-- /.box-body -->
+    </div>
+
+</section>
 <div class="col-9 ">
     <span class="alert-danger close"><?php echo validation_errors(); ?></span> 
 </div>

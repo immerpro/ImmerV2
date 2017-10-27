@@ -1,3 +1,6 @@
+
+<br>
+
 <section id="acerca_de_immerpro" class="intro">
 		<div class="intro-content">
 			<div class="container" style="height: 265px;">
@@ -14,9 +17,9 @@
 						<div class="wow fadeInRight" data-wow-delay="0.1s">
 <div id="funcionalidades"></div>
 						<ul class="lead-list">
-							<li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Lo primero</strong><br />Facil manejo</span></li>
-							<li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Lo segundo</strong><br />Gestiona los inventarios de manera segura</span></li>
-							<li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Lo tercero</strong><br />Agilidad en sus procesos</span></li>
+							<li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Facil manejo</strong></li>
+							<li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Gestiona los inventarios de manera segura</strong></li>
+							<li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Agilidad en sus procesos</strong></li>
 						</ul>
 						
 						</div>

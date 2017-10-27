@@ -29,39 +29,33 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
-                <div class="md-form">
-                    <i class="fa fa-cart-plus prefix"></i>
+    <div class="col-md-5" style="margin-left: 350px;">
+        <div class="box box-danger">
+
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="form-group">
+                    <i class="fa fa-cart-plus prefix fa-2x"></i> <label for="producto" data-error="wrong" data-success="right">Nombre del producto</label>
                     <input type="text" name="txtProducto" id="producto" class="form-control">
-                    <label for="producto" data-error="wrong" data-success="right">Nombre del producto</label>
-                    <div style="height: 5vh"></div>
-                </div> 
-            </div>
-            <script>
-                $(function () {
-                    $("#producto").autocomplete({
-                        source: "<?php base_url() ?>inventario/get_producto" // 
-                    });
-                });
-            </script>
 
-            <div class="col-6">
-                <div class="md-form">
-                    <i class="fa fa-cubes prefix"></i>
-                    <input type="text" id="cantentrada" class="form-control" name="txtCantentra">
-                    <label for="cantentrada" data-error="wrong" data-success="right">Cantidad Entrada:</label>
                 </div>
-            </div>
-            <div class="col-6">
-                <div class="md-form">
-                    <i class="fa fa-money prefix"></i>
-                    <input type="text" name="txtPreentra" id="form1" class="form-control">
-                    <label for="snombP" data-error="wrong" data-success="right"> Precio Entrada</label>
-                </div>  
-            </div>
+                <script>
+                    $(function () {
+                        $("#producto").autocomplete({
+                            source: "<?php base_url() ?>inventario/get_producto" // 
+                        });
+                    });
+                </script>
+                <div class="form-group">
+                    <i class="fa fa-cubes prefix fa-2x"></i> <label for="cantentrada" data-error="wrong" data-success="right">Cantidad Entrada:</label>
+                    <input type="text" id="cantentrada" class="form-control" name="txtCantentra">
+                </div>
 
-            <div class="col-6">
-                <div >
+                <div class="form-group">
+                    <i class="fa fa-money prefix fa-2x"></i>  <label for="snombP" data-error="wrong" data-success="right"> Precio Entrada</label>
+                    <input type="text" name="txtPreentra" id="form1" class="form-control">
+                </div>
+                <div class="form-group">
                     <label for="proveedor" data-error="wrong" data-success="right"> <i class="fa fa-photo fa-2x"></i> Proveedor</label>
                     <select name="txtCodProv" class="form-control md-form"  id="txtCodProv" required data-parsley-trigger="keyup">
                         <option value="">seleccione un Proveedor</option>
@@ -71,13 +65,18 @@
                     </select>
                 </div>  
             </div>
-
+            <!-- /.box-body -->
         </div>
-        <div class="row">
+        <!-- /.box -->
+    </div> 
+
+
+</div>
+        <div class="row" style="margin-left:500px ;">
             <div class="col-11">
                 <div class="flex-center">
 
-                    <button type="submit" class="btn btn-orange waves-effect orange" name="btnNuevaEntrada"  ><i class='fa fa-send'> Registrar Orden Entrada</i></button>
+                    <button type="submit" class="btn bg-orange "  name="btnNuevaEntrada"  ><i class='fa fa-send'> Registrar Orden Entrada</i></button>
 
                 </div>
             </div>

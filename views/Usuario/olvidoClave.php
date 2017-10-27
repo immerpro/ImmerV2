@@ -1,7 +1,17 @@
 
+<section id="intro" class="intro">
+    <div class="intro-content">
 
+    
+        <div class="container" style="height: 295px;">
+            <div class="row">
+                <div class="col-lg-6">
+                   
+                   
 <div style="height: 11vh"></div>
-<p class="h1 orange-text text-center">Recuperar Clave</p>
+<div class="col-xs-6 col-sm-3 col-md-8 panel panel-primary" style="margin-left: 395px; margin-top: -20px; height: 50px;">
+                    <div class="form-group ">
+                        <p class="h1 orange-text text-center" style="margin-top: 0px;">Recuperar Clave</p></div></div>
 <div style="height: 30vh"></div>
 <div class="container">
     <section >
@@ -29,44 +39,40 @@
             </div>
             <center>
 
-                <div class="col-lg-4"></div>
-                <div class="jumbotron">
-                    <div class="row" >
-                        <br>
-                        <div class="col-xs-6 col-sm-6 col-md-6" >
-                            <div >
-                                <div class="form-group">
-                                    <i class="fa fa-envelope-square fa-2x prefix" aria-hidden="true" ></i>    <label for="userMail" >Email</label>
+                <div class="col-xs-6 col-sm-6 col-md-6 panel panel-primary" style="margin-left: 280px; margin-top: -40px;">
+                    <div class="form-group ">
+                        <i class="fa fa-envelope-square fa-2x prefix" aria-hidden="true" ></i>    <label for="userMail" >Email</label>
 
-                                    <input type="email" id="userMail" class="form-control" name="txtusuarioEmail" data-parsley-required="true" data-parsley-type="email"
-                                           data-parsley-trigger="keyup" >
-                                </div>
-
-
-                            </div>  
-                        </div>
-
-
-
+                        
+                        <input type="email" id="userMail" class="form-control" name="txtusuarioEmail" data-parsley-required="true" data-parsley-type="email"
+                               data-parsley-trigger="keyup" >
                     </div>
-                    <div style="height: 1.5vh"></div>
-
-                    <button type="submit" class="btn btn-orange waves-effect orange" name="btnRecuperaClave" > <i class='fa fa-lock'> </i> Recuperar Contraseña</button>
 
 
-
-                </div></center>
+                </div>  </center>
         </div>
-    </section>
+
+<br>
+<br>
+
+
+
+        <div style="height: 1.5vh"></div>
+
+        <button style="margin-left: -400px;" type="submit" class="btn btn-orange waves-effect orange" name="btnRecuperaClave" > <i class='fa fa-lock'> </i> Recuperar Contraseña</button>
+
+
 
 </div>
-<br>
-<br>
-<br>
+</div>
+
+            </div>
+</div></div></section>
+
 <script>
     $(document).ready(function () {
         $('form').parsley();
     });
 </script>
-
+<div style="height: 9vh"></div>
 <?php echo form_close(); ?>

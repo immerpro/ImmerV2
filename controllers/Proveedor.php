@@ -27,10 +27,10 @@ class Proveedor extends CI_Controller {
         $this->form_validation->set_message('numeric', 'Los Datos de %s deben ser numericos');
         $this->form_validation->set_message('alpha_numeric', 'El campo %s debe tener letras y numero');
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header', $t);
-            $this->load->view('templates/menu', $t);
+            $this->load->view('templates/admin/header', $t);
+            $this->load->view('templates/admin/menu', $t);
             $this->load->view('Proveedor/NuevoProveedor');
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin/footer');
         } else {
             // llamo al metodo para agregar productos
             $this->load->helper('url');
@@ -53,10 +53,10 @@ class Proveedor extends CI_Controller {
                 $this->session->set_flashdata('incorrecto', ' se produjo un error al registrar ');
             }
             // cargar la vista
-            $this->load->view('templates/header', $t);
-            $this->load->view('templates/menu', $t);
+            $this->load->view('templates/admin/header', $t);
+            $this->load->view('templates/admin/menu', $t);
             $this->load->view('Proveedor/NuevoProveedor');
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin/footer');
         }
     }
 
@@ -82,10 +82,10 @@ class Proveedor extends CI_Controller {
             'table' => $initial_content,
             'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))
         );
-        $this->load->view('templates/header', $info);
-        $this->load->view('templates/menu', $info);
+        $this->load->view('templates/admin/header', $info);
+        $this->load->view('templates/admin/menu', $info);
         $this->load->view('Proveedor/ConsultarProveedor', $info);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
 
     public function pagina($numPag = 0) {
@@ -262,10 +262,10 @@ class Proveedor extends CI_Controller {
             $data = '';
             return FALSE;
         }
-        $this->load->view('templates/header', $dato);
-        $this->load->view('templates/menu', $dato);
+        $this->load->view('templates/admin/header', $dato);
+        $this->load->view('templates/admin/menu', $dato);
         $this->load->view('Proveedor/EditarProveedor', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
 
     // metodo para actualizar un producto
@@ -294,7 +294,7 @@ class Proveedor extends CI_Controller {
             'nombrePro' => $mostrarNombre
         );
 
-        $this->load->view('templates/header', $info_modal);
+        $this->load->view('templates/admin/header', $info_modal);
         $this->load->view('Proveedor/modal', $info_modal);
      
     }

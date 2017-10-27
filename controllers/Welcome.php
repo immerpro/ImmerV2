@@ -22,9 +22,9 @@ class Welcome extends CI_Controller {
     public function index() {
 
         $template1 = '<section class="content">
-  <div class="box box-primary">
+  <div class="box box-warning">
  
-  <div class="box box-primary">
+  <div class="box box-warning">
     <h3 class="box-title">Productos</h3>
     <div class="box-tools pull-right">
       <!-- Buttons, labels, and many other things can be placed here! -->
@@ -63,7 +63,7 @@ class Welcome extends CI_Controller {
             </div>
             <!-- /.box-body -->
           </div>
-          <div class="box box-primary collapsed-box">
+          <div class="box box-warning collapsed-box">
             <div class="box-header with-border">
               <h3 class="box-title">Inventario</h3>
 
@@ -84,19 +84,13 @@ class Welcome extends CI_Controller {
         </section>
        
 ';
-        $footer_template = ' <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 1.0
-    </div>
-    <strong>Copyright &copy; 2017 <a href="">Immerpro</a>.</strong> All rights
-    reserved.
-  </footer>
-  ';
+       
         $data = array(
             'page_title' => 'ImmerPro- Admin',
-            'heading' => 'Admin',
+            'heading' => 'Bienvenido Administrador(a)'.$this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))->nombreCompleto,
             'contenido' => $template1,
-            'footer' => $footer_template
+     
+            'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))->NombreUsuario 
         );
         $this->parser->parse('templates/layout', $data);
     }
@@ -104,7 +98,7 @@ class Welcome extends CI_Controller {
     public function envio() {
         $this->email->from('immerpro2018@gmail.com', 'ImmerPRO');
         $this->email->to('proyecto.medd@gmail.com');
-        $this->email->subject('Recuperaci�n de password en nuestra plataforma');
+        $this->email->subject('Recuperaci0n de password en nuestra plataforma');
 
         $html = '<h2>Pulsa  o copia y pega el siguiente enlace  en el navegador  para recuperar la clave </h2><hr><br>';
         $html .= '<a  href="' . base_url() . 'UsuarioController/recuperacionClaveXEmail/' . md5(123456) . '">';

@@ -20,15 +20,15 @@
             <!--Body-->
             <div class="modal-body">
 
-                <p class="black-text">El producto <span class="badge badge-danger h5-responsive"> <?=$nombrePro->NombreProducto?></span>  no se mostrara en el listado de productos</p>
+                <p class="black-text">El producto <span class="label label-primary"> <?=$nombrePro->NombreProducto?></span>  no se mostrara en el listado de productos</p>
                 <p class="black-text">Para poder inactivar el producto las existencias deben ser menores o iguales a 6</p>
                 <p class="black-text">de lo contrario no se inactivara el producto</p>
                 <p class="black-text">¿ Desea continuar ?</p> 
             </div>
             <!--Footer-->
             <div class="modal-footer">
-                <a href="<?php echo base_url() ?>producto"><button type="button" class="btn btn-secondary" >Cancelar</button></a>
-                <button type="submit" class="btn btn-blue-grey">Inactivar</button>
+                <a  href="<?php echo base_url() ?>producto"><button type="button" class="btn bg-navy" >Cancelar</button></a>
+                <button type="submit" class="btn bg-olive ">Inactivar</button>
             </div>
         </div>
         <!--/.Content-->

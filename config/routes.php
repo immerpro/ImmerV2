@@ -57,7 +57,6 @@ $route['iniciar'] = 'UsuarioController/Login';
 $route['ingresar'] = 'UsuarioController/ingresoUsuario';
 $route['registro'] = 'UsuarioController/RegistroUsuario';
 $route['salir'] = 'UsuarioController/cerrarsesion';
-$route['recupera'] = 'UsuarioController/recuperaClave';
 $route['olvido'] = 'UsuarioController/olvidarClave';
 $route['recupera'] = 'UsuarioController/recuperaClaveUsuario';
 

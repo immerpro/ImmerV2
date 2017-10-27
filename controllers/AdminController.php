@@ -13,10 +13,10 @@ class AdminController extends CI_Controller {
             'titulo' => 'Admin',
             'es_usuario_normal' => FALSE,
              'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))];
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu', $data);
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/menu', $data);
         $this->load->view('Admin/index');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
     // pagina del perfil del administrador
     public function mostrarPerfilAdmin() {
@@ -28,10 +28,10 @@ class AdminController extends CI_Controller {
                  'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario')),
              'mrol' => $this->usuario_model->mostrarRol($this->session->userdata('rol')),
                ];
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu', $data);
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/menu', $data);
         $this->load->view('Admin/perfilAdmin', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
     // pagina habilitar Colaboradores
     public function habilitarColaboradores() {
@@ -42,10 +42,10 @@ class AdminController extends CI_Controller {
                  'es_usuario_normal' => FALSE,
                  'colaboradores' => $this->usuario_model->mostrarColaboradorSinAutorizar(),
                  'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))];
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu', $data);
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/menu', $data);
         $this->load->view('Admin/habilitarColaborador', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
 // metodo para autorizar a colaborador
     public function colaboradorAutorizado() {

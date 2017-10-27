@@ -5,6 +5,9 @@
         height: 200px;
     }
 </style>
+<br>
+
+
 <section id="boxes" class="home-section paddingtop-80">
 	
 		<div class="container">

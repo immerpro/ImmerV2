@@ -8,7 +8,7 @@
  <?php echo form_open('subcategoria/InactivarSub/'.$id); ?>
             <div style="height: 21vh"></div>
             <div class="mx-4 hm-green-light">
-    <div class="modal-dialog modal-notify modal-success" role="document">
+    <div class="modal-dialog modal-notify modal-danger" role="document">
         <!--Content-->
         <div class="modal-content">
             <!--Header-->
@@ -26,8 +26,8 @@
             </div>
             <!--Footer-->
             <div class="modal-footer">
-                <a href="<?php  echo base_url()?>categoria"><button type="button" class="btn btn-secondary" >Cancelar</button></a>
-                <button type="submit" class="btn btn-blue-grey">Inactivar</button>
+                <a href="<?php  echo base_url()?>categoria"><button type="button" class="btn bg-navy" >Cancelar</button></a>
+                <button type="submit" class="btn bg-olive">Inactivar</button>
             </div>
         </div>
         <!--/.Content-->

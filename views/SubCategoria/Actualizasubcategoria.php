@@ -1,5 +1,5 @@
 <div class="container">
-    <section class="section">
+    <section class="content">
         <div style="height: 5vh"></div>
 
         <div class="flex-center">
@@ -19,8 +19,9 @@
     <div class="col-6 col-md-6">
         <div class="md-form">
             <i class="fa fa-folder-o fa-2x prefix "></i>
-            <input type="text" id="form1" class="form-control" name="NombreSubcategoria" value="<?php echo $NombreSub; ?>">
             <label for="form1" class="">Subcategoria</label>
+
+            <input type="text" id="form1" class="form-control" name="NombreSubcategoria" value="<?php echo $NombreSub; ?>">
         </div>
         <div style="height: 3vh"></div>
         <div class="md-textarea">
@@ -28,7 +29,7 @@
             <label for="form1" class="">Detalle de Subcategoria</label>
             <textarea rows="10" cols="90"  name="detalSubCategoria"><?php echo $DetallesSub; ?></textarea> 
             <div class="btn-group flex-center">
-                <button type="submit" class="btn btn-orange waves-effect orange" name="btnEditaSubcategoria"><i class='fa fa-edit'> Actualizar Subcategoria</i></button>
+                <button type="submit" class="btn bg-orange " name="btnEditaSubcategoria"><i class='fa fa-edit'> Actualizar Subcategoria</i></button>
             </div>
         </div>
     </div>

@@ -1,4 +1,5 @@
 <?php
+
 ini_set("display_errors", FALSE);
 
 class UsuarioController extends CI_Controller {
@@ -11,22 +12,21 @@ class UsuarioController extends CI_Controller {
     public function index() {
 
         $informacion = array('titulo' => 'immerpro',
-         
             'es_usuario_normal' => TRUE);
         $this->load->view('templates/header', $informacion);
         $this->load->view('templates/menu', $informacion);
         $this->load->view('templates/Intro');
         $this->load->view('templates/services');
-         $this->load->view('templates/Team');
+        $this->load->view('templates/Team');
         $this->load->view('templates/Boxes');
+        $this->load->view('templates/contacto');
 //        $this->load->view('templates/Boxes2');
-  //      $this->load->view('templates/Pricing');
-  //      $this->load->view('templates/Pricing2');
-   //     $this->load->view('templates/Services');
-       
- //     $this->load->view('templates/Testimonial');
-   //     $this->load->view('templates/Works');
-      //  $this->load->view('templates/index');
+        //      $this->load->view('templates/Pricing');
+        //      $this->load->view('templates/Pricing2');
+        //     $this->load->view('templates/Services');
+        //     $this->load->view('templates/Testimonial');
+        //     $this->load->view('templates/Works');
+        //  $this->load->view('templates/index');
         $this->load->view('templates/footer');
     }
 
@@ -38,7 +38,6 @@ class UsuarioController extends CI_Controller {
             case '':
                 $data = array('token' => $this->tokenLogin(),
                     'titulo' => 'login',
-                    
                     'es_usuario_normal' => TRUE);
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/menu', $data);
@@ -53,7 +52,7 @@ class UsuarioController extends CI_Controller {
                 break;
             default:
 
-                $data = array('titulo' => 'login', 
+                $data = array('titulo' => 'login',
                     'es_usuario_normal' => TRUE);
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/menu', $data);
@@ -65,7 +64,7 @@ class UsuarioController extends CI_Controller {
 
 // validar el ingreso del usuario
     public function ingresoUsuario() {
-       
+
         if ($this->input->post('token') && $this->input->post('token') == $this->session->userdata('token')) {
 
             $this->form_validation->set_rules('txtusuario', 'usuario', 'required');
@@ -130,7 +129,6 @@ class UsuarioController extends CI_Controller {
 
         $info = array(
             'titulo' => 'Registro',
-      
             'es_usuario_normal' => FALSE,
             'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))
         );
@@ -147,10 +145,10 @@ class UsuarioController extends CI_Controller {
         $this->form_validation->set_message('is_unique', 'El  campo %s ya existe en el sistema ');
         $this->form_validation->set_message('matches', 'Las contraseñas no coinciden vuelva a intentarlo ');
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header', $info);
-            $this->load->view('templates/menu', $info);
+            $this->load->view('templates/admin/header', $info);
+            $this->load->view('templates/admin/menu', $info);
             $this->load->view('Usuario/Registro');
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin/footer');
         } else {
 
             // ingresamos los datos 
@@ -170,17 +168,16 @@ class UsuarioController extends CI_Controller {
                 $this->session->set_flashdata('incorrecto', ' se produjo un error al registrar el usuario intentalo mas tarde');
             }
             // cargar la vista
-            $this->load->view('templates/header', $info);
-            $this->load->view('templates/menu', $info);
-            $this->load->view('Usuario/Registro');
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin/header', $info);
+            $this->load->view('templates/admin/menu', $info);
+            $this->load->view('Usuario/admin/Registro');
+            $this->load->view('templates/admin/footer');
         }
     }
 
     public function olvidarClave() {
         $info = array(
             'titulo' => 'Olvidar Clave',
-           
             'es_usuario_normal' => TRUE,
         );
         // cargar la vista
@@ -212,7 +209,6 @@ class UsuarioController extends CI_Controller {
                     $this->session->set_flashdata(
                             "not_email_send", "Ha ocurrido un error enviando el email, pruebe más tarde"
                     );
-                   
                 }
                 redirect(base_url() . "olvido", "refresh");
             }
@@ -248,7 +244,7 @@ class UsuarioController extends CI_Controller {
         }
         $data = array();
         $data["titulo"] = "Recupera Clave";
-       
+
         $data ['es_usuario_normal'] = TRUE;
         $data["token"] = $token;
         $this->session->set_userdata("id_user_recovery_pass", $this->comprobarToken($token)->idUsuario);
@@ -337,29 +333,29 @@ class UsuarioController extends CI_Controller {
         $this->form_validation->set_rules('txtemail', 'correo', 'required|valid_email');
         $this->form_validation->set_rules('txtAsunto', 'Asunto', 'required');
         $this->form_validation->set_rules('txtMensaje', 'Mensaje', 'required');
-       // mensajes personalizados
+        // mensajes personalizados
         $this->form_validation->set_message('required', 'El %s es requerido');
         $this->form_validation->set_message('valid_email', 'El %s no tiene un formato correcto');
         if ($this->form_validation->run() === FALSE) {
             $this->index();
         } else {
-        
-        $nombre = $this->input->post("txtnombre");
-        $email1 = $this->input->post("txtemail");
-        $asunto = $this->input->post("txtAsunto");
-        $mensaje = $this->input->post("txtMensaje");
-        $this->email->from($email1, $nombre);
-        $this->email->to('immerpro2018@gmail.com');
-        $this->email->subject($asunto);
 
-        $html = ' El Usuario ' . $nombre . ' dejo el siguiente mensaje <font size="2" face="Arial" color="blue">' . $mensaje . '</font>';
-        $this->email->message($html);
+            $nombre = $this->input->post("txtnombre");
+            $email1 = $this->input->post("txtemail");
+            $asunto = $this->input->post("txtAsunto");
+            $mensaje = $this->input->post("txtMensaje");
+            $this->email->from($email1, $nombre);
+            $this->email->to('immerpro2018@gmail.com');
+            $this->email->subject($asunto);
 
-        if ($this->email->send()) {
-            $this->load->view('mensaje/mensajeEmail');
-        } else {
-            $this->load->view('mensaje/mensajeError');
-        }
+            $html = ' El Usuario ' . $nombre . ' dejo el siguiente mensaje <font size="2" face="Arial" color="blue">' . $mensaje . '</font>';
+            $this->email->message($html);
+
+            if ($this->email->send()) {
+                $this->load->view('mensaje/mensajeEmail');
+            } else {
+                $this->load->view('mensaje/mensajeError');
+            }
         }
     }
 

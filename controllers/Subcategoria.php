@@ -16,10 +16,10 @@ class SubCategoria extends CI_Controller {
         $data['titulo'] = "Subcategoria";
          $data ['perfil'] = $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'));
         // cargar la vista
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu', $data);
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/menu', $data);
         $this->load->view('SubCategoria/index', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
 
     public function SubInCategoria() {
@@ -38,10 +38,10 @@ class SubCategoria extends CI_Controller {
         $this->form_validation->set_rules('detalSubCategoria', 'detalle subcategoria', 'required');
 
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/menu', $data);
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/menu', $data);
             $this->load->view('SubCategoria/NuevaSubcategoria', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin/footer');
         } else {
             $multiInsert = ['NombreSubcategoria' => $this->input->post('NombreSubcategoria'),
                 'detallesSub' => $this->input->post('detalSubCategoria'),
@@ -56,10 +56,10 @@ class SubCategoria extends CI_Controller {
                 redirect('subcategoria');
             }
 
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/menu', $data);
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/menu', $data);
             $this->load->view('SubCategoria/NuevaSubcategoria', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin/footer');
         }
     }
 
@@ -89,10 +89,10 @@ if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') !
             $data = '';
             return FALSE;
         }
-        $this->load->view('templates/header', $dato);
-        $this->load->view('templates/menu', $dato);
+        $this->load->view('templates/admin/header', $dato);
+        $this->load->view('templates/admin/menu', $dato);
         $this->load->view('SubCategoria/Actualizasubcategoria', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
 
     public function actualizarsub() {
@@ -134,7 +134,7 @@ if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') !
             'nombresubcat' => $nombresubcategoria
         );
 
-        $this->load->view('templates/header', $info_modal);
+        $this->load->view('templates/admin/header', $info_modal);
         $this->load->view('subcategoria/modalSub', $info_modal);
     }
 

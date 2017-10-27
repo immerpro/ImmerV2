@@ -1,5 +1,6 @@
  
-
+<br>
+<br>
 <section id="intro" class="intro">
     <div class="intro-content">
 
@@ -20,9 +21,9 @@
                         <div class="wow fadeInRight" data-wow-delay="0.1s">
 
                             <ul class="lead-list">
-                                <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Lo primero</strong><br />Facil manejo</span></li>
-                                <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Lo segundo</strong><br />Gestiona los inventarios de manera segura</span></li>
-                                <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Lo tercero</strong><br />Agilidad en sus procesos</span></li> 
+                                <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Facil manejo</strong></li>
+                                <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Gestiona los inventarios de manera segura</strong></li>
+                                <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Agilidad en sus procesos</strong></li>
                             </ul>
 
                         </div>
@@ -40,25 +41,57 @@
 
                     <form action="" method="post" role="form" class="contactForm lead">
 
-                        <div class="col-xs-6 col-sm-6 col-md-6 panel panel-primary" style="margin-left: 100px; margin-top: -40px;">
-                            <div class="form-group ">
-                                <label>Usuario</label>
-                                <input type="text" name="txtusuario" id="first_name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
-                                <div class="validation"></div>
-
-                                <label>Contraseña</label>
-                                <input type="password" name="txtpassword" id="last_name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
-                                <div class="validation"></div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 panel panel-primary" style="margin-left: 50px; margin-top: -40px; width: 650px;">
+                            <div class="col-xs-6 col-sm-6 col-md-6 panel panel-primary" style="margin-left: -15px; margin-top: -0px; width: 650px; height: 70px;">
+                                <a class="navbar-brand" >
+                                    <img src="<?php echo base_url() ?>public/img/ilogo.png" alt="" width="120" height="70" style=" margin-top:-28px ;margin-left: 130px;; width: 300px; height: 80px;" />
+                                </a>
                             </div>
+                            <br><br><br><br>
+                            <div class="form-group ">
 
-                            
+                                <center>
+                                    <table >
 
-                            <input style="margin-left: 70px;" type="submit" value="Ingresar" class="btn btn-skin  btn-lg">
-                            <?php echo form_close(); ?>
 
-                            <label style="margin-left: 40px;"><a href=""><b>Olvido de contraseña</b></a></label></div>
+                                        <tr>
+                                            <td style=" width: 300px;"><i class="fa fa-user"> </i> <label >Usuario</label> </td>
+
+                                            <td style=" width: 250px;"><i class="fa fa-lock"> </i> <label >Contraseña</label></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="hidden" name="token" value="<?= $token ?>">
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                            <td><input style="width: 250px;"  type="text" name="txtusuario" id="first_name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
+
+                                                <div class="validation"></div></td>
+                                            <td><input type="password" name="txtpassword" id="last_name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
+                                                <div class="validation"></div></td>
+                                        </tr>
+                                    </table>
+                                    <div class="flex-center">
+                                        <div class="alert-danger"><?php echo validation_errors(); ?></div> 
+                                        <?php if ($this->session->flashdata('usuario_mal')): ?>
+                                            <div class="alert alert-success"><?= $this->session->flashdata('usuario_mal') ?></div> 
+                                        <?php endif; ?>
+                                    </div>
+                                </center>
+
+                            </div>
+             <input style="margin-left: 250px;" type="submit" value="Ingresar" class="btn btn-skin  btn-lg">
+                            <br>
+
+
+                            <label style="margin-left: 230px; margin-top: -22px;"><a href="<?php  echo base_url()?>olvido"><b>Olvido de contraseña</b></a></label>
+                        </div>
+                    </form>
                 </div>
-                </form>	
+
                 </center>
 
 
@@ -70,7 +103,6 @@
 </div>		
 
 </section>
-<br>
 <br>
 <br>
 

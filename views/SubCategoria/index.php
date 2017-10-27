@@ -1,48 +1,83 @@
-<div class="container" >
-    <div class="flex-first ">
-        <span class="badge badge-primary">
-            <?php echo date("d") . "-" . date("m") . "-" . date("Y"); ?> 
-        </span>
+<section class="content">
+    <div style="height: 2vh"></div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title box-warning">Listado de Categorias</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table  id="dataTables-example" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre SubCategoria</th>
+                                <th>Detalle SubCategoria</th>
+                            </tr>  
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <?php foreach ($Subcategorias as $Subcategoria_item): ?>
+                                    <td><?php echo $Subcategoria_item['NombreSubcategoria']; ?></td>
+                                    <td><?php echo $Subcategoria_item['detallesSub']; ?></td>
+                                </tr>
+
+                            <?php endforeach; ?>   
+
+                        </tbody>
+
+                    </table>
+
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <!-- /.box-body -->
     </div>
 
-    <section class="section">
-        <p class="display-4 orange-text flex-center">Listado de SubCategorias</p>
-        <div id="page-wrapper">
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                    <thead>
-                        <tr>
-                            <th>Nombre SubCategoria</th>
-                            <th>Detalle SubCategoria</th>
-
-
-                        </tr>  
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <?php foreach ($Subcategorias as $Subcategoria_item): ?>
-                                <td><?php echo $Subcategoria_item['NombreSubcategoria']; ?></td>
-                                <td><?php
-                                    echo $Subcategoria_item['detallesSub'];
-                                    echo br(3);
-                                    ?></td>
+</section>
 
 
 
-                            </tr>
 
-                        <?php endforeach; ?>   
 
-                    </tbody>
 
-                </table>
+
+
+
+
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title box-warning">Listado de SubCategorias</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+
+                </div>
             </div>
         </div>
-    </section>
-</div>
+        <!-- /.box-body -->
+    </div>
+</section>
 <script>
-    $(document).ready(function () {
-        $('#dataTables-example').dataTable();
-    });
-</script>
+    $(function () {
 
+        $('#dataTables-example').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })
+</script>

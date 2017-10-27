@@ -28,13 +28,31 @@
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="<?= base_url() ?>public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
+
+        <link rel="stylesheet" href="<?= base_url() ?>public/assets/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="<?= base_url() ?>public/assets/css/form-elements.css">
+        <link rel="stylesheet" href="<?= base_url() ?>public/assets/css/style.css">
+        <script src="<?= base_url() ?>public/bower_components/jquery/dist/jquery.min.js"></script>
+
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
         <script src="<?= base_url() ?>public/https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="<?= base_url() ?>public/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#categoria").change(function () {
+                    $("#categoria option:selected").each(function () {
+                        categoria = $('#categoria').val();
+                        $.post("<?= base_url() ?>ProductoController/asociarCategoria_a_subcategoria", {categoria: categoria}, function (data) {
+                            $("#subcatego").html(data);
+                        });
+                    });
+                })
+            });
+        </script>
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     </head>
@@ -43,7 +61,7 @@
 
             <header class="main-header">
                 <!-- Logo -->
-                <a href="<?= base_url() ?>public/index2.html" class="logo">
+                <a  class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini">M</span>
                     <!-- logo for regular state and mobile devices -->
@@ -423,7 +441,7 @@
                             <a href="<?php echo site_url('recuperadato'); ?>">
                                 <i class="fa fa-th text-orange"></i> <span>Restauraciòn</span>
                                 <span class="pull-right-container">
-                                    <small class="label pull-right bg-orange-active">Datos</small>
+                                    <small class="label pull-right bg-orange-active"></small>
                                 </span>
                             </a>
                         </li>
@@ -435,26 +453,157 @@
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
-                <h5 class="label-default text-center">{heading}</h5>
-                {contenido}
-                
+                <!-- Top content -->
+                <div >
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
+                                <form role="form" action="" method="post" class="f1" data-parsley-validate>
+
+                                    <h3>Nuevo Producto</h3>
+                                    <p>rellene la siguientes datos </p>
+                                    <div class="f1-steps">
+                                        <div class="f1-progress">
+                                            <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
+                                        </div>
+                                        <div class="f1-step active">
+                                            <div class="f1-step-icon"><i class="fa fa-user"></i></div>
+                                            <p>describa</p>
+                                        </div>
+                                        <div class="f1-step">
+                                            <div class="f1-step-icon"><i class="fa fa-key"></i></div>
+                                            <p>cantidades</p>
+                                        </div>
+                                        <div class="f1-step">
+                                            <div class="f1-step-icon"><i class="fa fa-twitter"></i></div>
+                                            <p>detalles</p>
+                                        </div>
+                                    </div>
+
+                                    <fieldset>
+                                        <h4></h4>
+                                        <div class="form-group">
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                           
+                                        </div>
+                                        <div class="f1-buttons">
+                                            <button type="button" class="btn btn-next">Siguiente</button>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <h4></h4>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="f1-email">Maximo Stock</label>
+                                            <input type="text" name="txtMaximo" placeholder="minimo..." class="f1-email form-control" id="f1-email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="f1-password">Minimo Stock</label>
+                                            <input type="text" name="txtMinimo" placeholder="maximo ..." class="f1-password form-control" id="f1-password" required data-parsley-type="number"  data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" value="<?= set_value('txtMinimo') ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="f1-repeat-password">Existencias</label>
+                                            <input type="text" name="f1-repeat-password" placeholder="existencias..." 
+                                                   class="f1-repeat-password form-control" id="f1-repeat-password" required data-parsley-type="number" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" data-parsley-integer-message="debe ingresar numeros" value="<?= set_value('txtExits') ?>">
+                                        </div>
+                                        <div class="f1-buttons">
+                                            <button type="button" class="btn btn-previous">Anterior</button>
+                                            <button type="button" class="btn btn-next">Siguiente</button>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <h4></h4>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="f1-facebook">Lote</label>
+                                            <input type="text" name="txtLote" class="form-control " data-parsley-required="true" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" value="<?= set_value('txtLote') ?>" placeholder="lote"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="fvencimiento">Fecha de vencimiento</label>
+                                            <input type="text" id="date-picker-example" name="fvencimiento" class="form-control datepicker" data-parsley-required="true" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" value="<?= set_value('fvencimiento') ?>" placeholder="fecha vencimiento"/><br /> 
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="f1-twitter">Categoria</label>
+                                            <select name="categoria" class="form-control md-form"  id="categoria" required data-parsley-trigger="keyup">
+                                                <option value="">seleccione una categorìa</option>
+                                                <?php foreach ($categorias_select as $itemCategoria): ?>
+                                                    <option value="<?= $itemCategoria['codCategoria'] ?>"><?= $itemCategoria['categoria'] ?></option>
+                                                <?php endforeach; ?>    
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="f1-google-plus">Subcategoria</label>
+                                            <select name="subcategoria" id="subcatego" class="form-control" required data-parsley-trigger="keyup"  >
+
+                                                <option value="">selecciona la subcategoria</option>
+
+                                            </select> 
+                                        </div>
+                                        <div class="f1-buttons">
+                                            <button type="button" class="btn btn-previous">Anterior</button>
+                                            <button type="submit" class="btn btn-submit">Crear Producto</button>
+                                        </div>
+                                    </fieldset>
+
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <?php if (validation_errors()): ?>
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <?php echo validation_errors(); ?> 
+
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($this->session->flashdata('correcto')): ?>
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <?php echo $this->session->flashdata('correcto'); ?> 
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($this->session->flashdata('incorrecto')): ?>
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <?php echo $this->session->flashdata('incorrecto'); ?> 
+                            </div>
+
+                        <?php endif; ?>
+
+
+                    </div>
+
+
+                </div>
+
             </div>
             <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 1.0
-    </div>
-    <strong>Copyright &copy; 2017 <a href="">Immerpro</a>.</strong> All rights
-    reserved.
-  </footer>
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 1.0
+                </div>
+                <strong>Copyright &copy; 2017 <a href="">Immerpro</a>.</strong> All rights
+                reserved.
+            </footer>
             <!-- ./wrapper -->
 
             <!-- jQuery 3 -->
-            <script src="<?= base_url() ?>public/bower_components/jquery/dist/jquery.min.js"></script>
             <!-- jQuery UI 1.11.4 -->
             <script src="<?= base_url() ?>public/bower_components/jquery-ui/jquery-ui.min.js"></script>
             <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
             <script>
-                $.widget.bridge('uibutton', $.ui.button);
+            $.widget.bridge('uibutton', $.ui.button);
             </script>
             <!-- Bootstrap 3.3.7 -->
             <script src="<?= base_url() ?>public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -485,5 +634,12 @@
             <script src="<?= base_url() ?>public/dist/js/pages/dashboard.js"></script>
             <!-- AdminLTE for demo purposes -->
             <script src="<?= base_url() ?>public/dist/js/demo.js"></script>
+
+            <script src="<?= base_url() ?>public/assets/js/jquery.backstretch.min.js"></script>
+            <script src="<?= base_url() ?>public/assets/js/retina-1.1.0.min.js"></script>
+            <script src="<?= base_url() ?>public/assets/js/scripts.js"></script>
     </body>
 </html>
+
+
+

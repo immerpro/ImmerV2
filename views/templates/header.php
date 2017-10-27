@@ -8,7 +8,7 @@
         <meta name="author" content="">
 
         <title>Hola animate! conocete Immerpro te ayudara a invertir mejor en tu negocio</title>
-
+ <link rel="shortcut icon" href="<?php echo base_url() ?>public/img/IconoImmer.ico">
         <!-- css -->
         <!-- Bootstrap core CSS -->
         <?php echo link_tag('public/Medicio/css/bootstrap.min.css'); ?>

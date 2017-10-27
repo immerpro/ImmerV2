@@ -1,6 +1,6 @@
 <div class="container">
     <section class="section" data-parsley-validate>
-        <p class="display-4 orange-text flex-center">Orden Salida</p>
+      <h1  class="h1-responsive orange-text text-center">Orden de Salida</h1>
         <div style="height: 4vh"></div>
         <?php echo form_open('ingresosalida'); ?>
         <div class="row">
@@ -29,14 +29,18 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
-                <div class="md-form">
-                    <i class="fa fa-cart-plus prefix"></i>
+    <div class="col-md-5" style="margin-left: 350px;">
+        <div class="box box-danger">
+
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="form-group">
+                    <i class="fa fa-cart-plus prefix fa-2x"></i> <label for="snombP" data-error="wrong" data-success="right"></i> Nombre del Producto: </label>
                     <input type="text" id="snombP" class="form-control validate" name="txtProducto">
-                    <label for="snombP" data-error="wrong" data-success="right"></i> Nombre Producto: </label>
-                    <div style="height: 5vh"></div>
+                    
+                    
                 </div> 
-            </div>
+            
             <script>
                 $(function () {
                     $("#snombP").autocomplete({
@@ -44,24 +48,22 @@
                     });
                 });
             </script>
-            <div class="col-6">
-                <div class="md-form">
-                    <i class="fa fa-cubes prefix"></i>
+            
+                <div class="form-group">
+                    <i class="fa fa-cubes prefix fa-2x"></i> <label for="cants" data-error="wrong" data-success="right">Cantidad Salida:</label>
                     <input type="text" id="cants" class="form-control validate" name="txtCantsalida">
-                    <label for="cants" data-error="wrong" data-success="right">Cantidad Salida:</label>
+                    
                 </div>
-            </div>
-            <div class="col-6">
-                <div class="md-form">
-                    <i class="fa fa-money prefix"></i>
+            
+           
+                <div class="form-group">
+                    <i class="fa fa-money prefix fa-2x"></i> <label for="snombP" data-error="wrong" data-success="right"> Precio Salida</label>
                     <input type="text" id="snombP" class="form-control validate" name="txtPreSalida">
-                    <label for="snombP" data-error="wrong" data-success="right"> Precio Salida</label>
                 </div>  
-            </div>
-
-            <div class="col-6">
-                <div >
-                    <label for="snombP" data-error="wrong" data-success="right"> <i class="fa fa-list-alt"></i> Motivo Salida</label>
+            
+            
+            <div class=form-group">
+                    <label for="snombP" data-error="wrong" data-success="right"> <i class="fa fa-list-alt fa-2x"></i> Motivo Salida</label>
 
                     <select class="form-control" name="cboMotivo">
                         <option value="merma">Merma</option>
@@ -70,14 +72,16 @@
                       
                     </select>
                 </div>  
+           
             </div>
-
+</div>
+        </div>
         </div>
         <div class="row">
             <div class="col-11">
                 <div class="flex-center">
 
-                    <button type="submit" class="btn btn-orange waves-effect orange" name="btnNuevaSalida"  ><i class='fa fa-send'> Registrar Orden Salida</i></button>
+                    <button style="margin-left: 500px;" type="submit" class="btn bg-orange " name="btnNuevaSalida"  ><i class='fa fa-send'> Registrar Orden Salida</i></button>
 
                 </div>
             </div>

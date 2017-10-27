@@ -24,10 +24,10 @@ class Inventario extends CI_Controller {
             'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))
         ];
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu', $data);
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/menu', $data);
         $this->load->view('inventario/index');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
     public function mostrarNotificacionView() {
         if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') != 1) {
@@ -36,10 +36,10 @@ class Inventario extends CI_Controller {
         $data = ['titulo' => 'Notificaciones', 'es_usuario_normal' => FALSE,
             'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))];
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu', $data);
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/menu', $data);
         $this->load->view('inventario/notifica');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
     // envia un correo de forma automatica cada 20 dias 
     public function notificar() {
@@ -73,10 +73,10 @@ class Inventario extends CI_Controller {
             'es_usuario_normal' => FALSE,
             'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))];
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu', $data);
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/menu', $data);
         $this->load->view('inventario/OrdenSalida', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
     public function CrearSalida() {
         if ($this->session->userdata('rol') == NULL) {
@@ -86,10 +86,10 @@ class Inventario extends CI_Controller {
             'lproducto' => $this->productos_model->obtenerProductos(),
             'es_usuario_normal' => FALSE,
             'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))];
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu', $data);
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/menu', $data);
         $this->load->view('inventario/NuevaSalida');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
     public function ordenentrada() {
         if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') != 1) {
@@ -100,10 +100,10 @@ class Inventario extends CI_Controller {
         $t['proveedor_select'] = $this->Proveedor_model->TraerDatos();
 
         // cargar la vista
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu', $data);
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/menu', $data);
         $this->load->view('Ordenentrada/ordenentrada', $t);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
 
     function get_producto() {
@@ -133,10 +133,10 @@ class Inventario extends CI_Controller {
             'div1' => " <div id='pagina'>",
             'table' => $initial_content];
         // cargar la vista
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu', $data);
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/menu', $data);
         $this->load->view('Ordenentrada/consultarordenentrada', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
     public function pagina($numPag = 0) {
         if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') != 1) {
@@ -292,10 +292,10 @@ class Inventario extends CI_Controller {
         $this->form_validation->set_message('numeric', 'Ingrese numeros en el campo %s ');
         $this->form_validation->set_message('integer', 'Ingrese numeros en el campo %s ');
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/menu', $data);
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/menu', $data);
             $this->load->view('Ordenentrada/ordenentrada', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin/footer');
         } else {
             // defino variables para ingresar los datos
             $codUsuario = $this->session->userdata('idUsuario');
@@ -311,10 +311,10 @@ class Inventario extends CI_Controller {
             } else {
                 $this->session->set_flashdata('incorrecto', 'El orde de entrada no  esta  registrada');
             }
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/menu', $data);
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/menu', $data);
             $this->load->view('Ordenentrada/ordenentrada', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin/footer');
         }
     }
     public function NuevaOrdenSalida() {
@@ -331,10 +331,10 @@ class Inventario extends CI_Controller {
         $this->form_validation->set_message('numeric', 'Ingrese numeros en el campo %s ');
         $this->form_validation->set_message('integer', 'Ingrese numeros en el campo %s ');
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/menu', $data);
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/menu', $data);
             $this->load->view('inventario/NuevaSalida', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin/footer');
         } else {
             // defino variables para ingresar los datos
             $nombreproducto = $this->input->post('txtProducto');
@@ -349,10 +349,10 @@ class Inventario extends CI_Controller {
             } else {
                 $this->session->set_flashdata('incorrecto', 'Error en el registro');
             }
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/menu', $data);
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/menu', $data);
             $this->load->view('inventario/NuevaSalida', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin/footer');
         }
     }
     public function existir_producto() {

@@ -11,10 +11,10 @@ class ColaboradorController extends CI_Controller {
         }
         $data = ['titulo' => 'Colaborador', 'es_usuario_normal' => FALSE,
         'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))];
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu', $data);
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/menu', $data);
         $this->load->view('Colaborador/index');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
     public function mostrarPerfilColaborador() {
          if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') != 2) {
@@ -27,10 +27,10 @@ class ColaboradorController extends CI_Controller {
             
             ];
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu', $data);
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/menu', $data);
         $this->load->view('Colaborador/perfilColaborador');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
 
     public function actualizarPerfilCola() {

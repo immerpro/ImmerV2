@@ -35,10 +35,10 @@ class CategoriaController extends CI_Controller {
             'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))
         );
         // cargar la vista
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu', $data);
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/menu', $data);
         $this->load->view('Categoria/index', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
     public function pagina($numPag = 0) {
         $config['base_url'] = base_url('CategoriaController/pagina/');
@@ -60,7 +60,7 @@ class CategoriaController extends CI_Controller {
         $config['next_tag_close'] = '</li>';
         $config['last_tag_open'] = '<li>';
         $config['last_tag_close'] = '</li>';
-        $config['cur_tag_open'] = '<li class="active"><a href="#" class="btn btn-orange">';
+        $config['cur_tag_open'] = '<li class="active"><a href="#" class="btn bg-orange">';
         $config['cur_tag_close'] = '</a></li>';
         $config['num_tag_open'] = '<li>';
         $config['num_tag_close'] = '</li>';
@@ -94,9 +94,9 @@ class CategoriaController extends CI_Controller {
                 $this->table->add_row(
                         $categoria_item->NombreCategoria,
                          $categoria_item->detalles, 
-                         'Mira <a class="orange-text" href=' . base_url() . 'CategoriaController/Ver/' . $categoria_item->idCategoria . ' ><i class="fa fa-eye" onmouseover="Subcategoria"></i></a>' .
-                        ' Agrega <a class="blue-text"  href=' . base_url() . 'CategoriaController/Agregar/' . $categoria_item->idCategoria . '><i class="fa fa-plus"></i></a>', 'Modificar <a class="teal-text" href=' . base_url() . 'Categoria/editar/' . $categoria_item->idCategoria . '><i class="fa fa-pencil "></i></a>'
-                        . nbs(3) . 'Inactivar <a class="red-text" href=' . base_url() . 'CategoriaController/modal/' . $categoria_item->idCategoria . '><i class="fa fa-times" ></i></a>');
+                         'Mira <a class="text-orange" href=' . base_url() . 'CategoriaController/Ver/' . $categoria_item->idCategoria . ' ><i class="fa fa-eye" onmouseover="Subcategoria"></i></a>' .
+                        ' Agrega <a class="text-blue"  href=' . base_url() . 'CategoriaController/Agregar/' . $categoria_item->idCategoria . '><i class="fa fa-plus"></i></a>', 'Modificar <a class="teal-text" href=' . base_url() . 'CategoriaController/editar/' . $categoria_item->idCategoria . '><i class="fa fa-pencil "></i></a>'
+                        . nbs(3) . 'Inactivar <a class="text-red" href=' . base_url() . 'CategoriaController/modal/' . $categoria_item->idCategoria . '><i class="fa fa-times" ></i></a>');
 
             }
             $this->jquery_pagination->initialize($config);
@@ -194,10 +194,10 @@ class CategoriaController extends CI_Controller {
         $this->form_validation->set_message('required', 'El campo %s es obligatorio');
         $this->form_validation->set_message('is_unique', 'El campo %s ya existe');
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/menu', $data);
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/menu', $data);
             $this->load->view('Categoria/INCategoria');
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin/footer');
         } else {
             $almacenar = $this->categoria_model->ingressarCategoria();
             if ($almacenar == true) {
@@ -205,10 +205,10 @@ class CategoriaController extends CI_Controller {
             } else {
                 $this->session->set_flashdata('incorrecto', 'La categoria no se pudo crear correctamente');
             }
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/menu', $data);
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/menu', $data);
             $this->load->view('Categoria/INCategoria', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/admin/footer');
         }
     }
     // ver las subcategorias asociadas a una categoria
@@ -220,10 +220,10 @@ class CategoriaController extends CI_Controller {
         $data['titulo'] = " ver subcategoria";
         $data['es_usuario_normal'] = FALSE;
         $data['perfil'] = $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'));
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menu', $data);
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/menu', $data);
         $this->load->view('Categoria/Ver');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
 // vista para agregar la subcategoria
     public function Agregar() {
@@ -240,10 +240,10 @@ class CategoriaController extends CI_Controller {
             'es_usuario_normal' => FALSE,
             'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))];
 
-        $this->load->view('templates/header', $agr);
-        $this->load->view('templates/menu', $agr);
+        $this->load->view('templates/admin/header', $agr);
+        $this->load->view('templates/admin/menu', $agr);
         $this->load->view('SubCategoria/NuevaSubcategoria', $agr);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
 
     public function editar() {
@@ -268,10 +268,10 @@ class CategoriaController extends CI_Controller {
             $data = '';
             return FALSE;
         }
-        $this->load->view('templates/header', $dato);
-        $this->load->view('templates/menu', $dato);
+        $this->load->view('templates/admin/header', $dato);
+        $this->load->view('templates/admin/menu', $dato);
         $this->load->view('Categoria/Actualizacategoria', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/admin/footer');
     }
     public function CategoriaActualizada() {
         if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') != 1) {
@@ -289,11 +289,11 @@ class CategoriaController extends CI_Controller {
         if ($act == true) {
             $this->session->set_flashdata('correcto', 'La categoria fue actualizada correctamente');
         } else {
-            $this->session->set_flashdata('incorrecto', 'La categoria no se pudo actualizada correctamente');
+            $this->session->set_flashdata('incorrecto', 'La categoria no se pudo actualizar correctamente');
         }
 
 
-        redirect('Categoria');
+        redirect('categoria');
     }
     public function modal() {
         if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') != 1) {
@@ -311,7 +311,7 @@ class CategoriaController extends CI_Controller {
             'nombrecat' => $nombrecategoria
         );
 
-        $this->load->view('templates/header', $info_modal);
+        $this->load->view('templates/admin/header', $info_modal);
         $this->load->view('categoria/modal', $info_modal);
     }
 // inactiva las categorias

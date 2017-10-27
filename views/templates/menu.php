@@ -28,10 +28,12 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
 			  <ul class="nav navbar-nav">
-				<li class="active"><a href="#acerca_de_immerpro">Acerca de Immerpro</a></li>
-				<li><a href="#funcionalidades">Funcionalidades</a></li>
-				<li><a href="#Caracteristicas">Caracteristicas</a></li>
-                                <li><a href="<?php  echo base_url()?>iniciar">Iniciar Sesión</a></li>
+				<li class="active"><a href="<?php echo base_url()?>#acerca_de_immerpro">Acerca de Immerpro</a></li>
+				<li><a href="<?php echo base_url()?>#funcionalidades">Funcionalidades</a></li>
+				<li><a href="<?php echo base_url()?>#Caracteristicas">Caracteristicas</a></li>
+				<li><a href="<?php echo base_url()?>#contacto">Contacto</a></li>
+                                <!--<div class="col-xs-6 col-sm-6 col-md-6 panel panel-primary" style="margin-left: 50px; margin-top: -40px; width: 120px;">-->
+                                <li class="col-xs-6 col-sm-2 col-md-2 panel panel-danger" style="width: 120"><a href="<?php  echo base_url()?>iniciar">Ingresar</a></li>
 				
 				  </ul>
 				
