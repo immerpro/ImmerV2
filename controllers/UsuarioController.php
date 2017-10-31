@@ -170,7 +170,7 @@ class UsuarioController extends CI_Controller {
             // cargar la vista
             $this->load->view('templates/admin/header', $info);
             $this->load->view('templates/admin/menu', $info);
-            $this->load->view('Usuario/admin/Registro');
+            $this->load->view('Usuario/Registro');
             $this->load->view('templates/admin/footer');
         }
     }

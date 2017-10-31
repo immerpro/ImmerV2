@@ -19,22 +19,22 @@
             <?php echo form_open('recupera'); ?>
             <div class="row">
                 <?PHP
-                messages_flash('red', validation_errors(), 'Errores del formulario', true);
+                messages_flash('danger', validation_errors(), 'Errores del formulario', true);
 
                 //si hay error enviando el email
-                messages_flash('red', 'not_email_send', 'Error enviando el email');
+                messages_flash('danger', 'not_email_send', 'Error enviando el email');
 
                 //si se ha enviando el email correctamente
-                messages_flash('success-color', 'mail_send', 'Email enviado correctamente');
+                messages_flash('success', 'mail_send', 'Email enviado correctamente');
 
                 //si hay error enviando el email
-                messages_flash('deep-orange', 'expired_request', 'Error recuperación password');
+                messages_flash('warning', 'expired_request', 'Error recuperación password');
 
                 //si hay error modificando el password lo mostramos
-                messages_flash('red', 'error_password_changed', 'Error modificando el password');
+                messages_flash('danger', 'error_password_changed', 'Error modificando el password');
 
                 //si se ha modificado el password correctamente
-                messages_flash('success-color', 'password_changed', 'Password modificado correctamente');
+                messages_flash('info', 'password_changed', 'Password modificado correctamente');
                 ?>
             </div>
             <center>

@@ -20,7 +20,7 @@ class AdminController extends CI_Controller {
     }
     // pagina del perfil del administrador
     public function mostrarPerfilAdmin() {
-        if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') != 1) {
+        if ($this->session->userdata('rol') == NULL ) {
             redirect(base_url() . 'iniciar');
         }
         $data = ['titulo' => 'perfil Admin', 

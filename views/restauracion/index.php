@@ -4,7 +4,7 @@
         <p class="h2 text-orange text-center">Restauraciòn Informaciòn</p>
         <div style="height: 4vh"></div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="box box-info">
                     <div class="box-header with-border">
                         <h3 class="box-title">Informaciòn del mòdulo </h3>
@@ -17,7 +17,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <p class="lead">
+                        <p class="h4">
                             en esta seccion podra ver la informacion que esta inactiva y tendra la opcion 
                             de activarla nuevamente por favor dar click sobre los modulos que desee ver
                             por ejemplo si quiero ver las categorias eliminadas dar click sobre 
@@ -248,7 +248,7 @@
                                                 <td><?= $activo['email'] ?></td>
 
                                                 <td>
-                                                    <a class="badge badge-danger"  title="inactivar" href=" <?php echo base_url() . 'reestablecer/inactivoColaborador/' . $activo['idUsuario'] ?>" ><i class="fa fa-ban fa-3x" ></i></a>
+                                                    <a   title="inactivar" href=" <?php echo base_url() . 'reestablecer/inactivoColaborador/' . $activo['idUsuario'] ?>" ><i class="fa fa-ban fa-1x text-danger fa-2x" ></i></a>
 
                                                 </td>
                                             </tr>

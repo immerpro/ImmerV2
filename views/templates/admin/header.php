@@ -3,9 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title><?php echo $titulo?></title>
+        <title><?php echo $titulo ?></title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="shortcut icon" href="<?php echo base_url() ?>public/IconoImmer.ico">
+
         <!-- Bootstrap 3.3.7 -->
         <link rel="stylesheet" href="<?= base_url() ?>public/bower_components/bootstrap/dist/css/bootstrap.min.css">
         <!-- Font Awesome -->
@@ -37,4 +39,12 @@
 
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        <?php echo link_tag('public/alerta/themes/alertify.core.css'); ?>
+        <?php echo link_tag('public/alerta/themes/alertify.default.css'); ?>
+        <script type="text/javascript" src="<?PHP echo base_url() ?>public/js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url() ?>public/js/parsley.min.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url() ?>public/js/es.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url() ?>public/alerta/lib/alertify.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url() ?>public/jqueryUI/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url() ?>public/js/push.min.js"></script>
     </head>

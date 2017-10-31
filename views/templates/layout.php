@@ -6,6 +6,8 @@
         <title>{page_title}</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="shortcut icon" href="<?php echo base_url() ?>public/IconoImmer.ico">
+
         <!-- Bootstrap 3.3.7 -->
         <link rel="stylesheet" href="<?= base_url() ?>public/bower_components/bootstrap/dist/css/bootstrap.min.css">
         <!-- Font Awesome -->
@@ -31,8 +33,8 @@
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
-        <script src="<?= base_url() ?>public/https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="<?= base_url() ?>public/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <script src="/https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
         <!-- Google Font -->
@@ -43,7 +45,7 @@
 
             <header class="main-header">
                 <!-- Logo -->
-                <a href="<?= base_url() ?>public/index2.html" class="logo">
+                <a href="<?= base_url() ?>welcome" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini">M</span>
                     <!-- logo for regular state and mobile devices -->
@@ -52,134 +54,54 @@
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
                     <!-- Sidebar toggle button-->
-                    <a href="<?= base_url() ?>public/#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <a href="<?= base_url() ?>welcome" class="sidebar-toggle" data-toggle="push-menu" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
 
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
                             <!-- Messages: style can be found in dropdown.less-->
-                            <li class="dropdown messages-menu">
-                                <a href="<?= base_url() ?>public/#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-envelope-o"></i>
-                                    <span class="label label-success">4</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 4 messages</li>
-                                    <li>
-                                        <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <li><!-- start message -->
-                                                <a href="<?= base_url() ?>public/#">
-                                                    <div class="pull-left">
-                                                        <img src="<?= base_url() ?>public/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                                    </div>
-                                                    <h4>
-                                                        Support Team
-                                                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                            <!-- end message -->
-                                            <li>
-                                                <a href="<?= base_url() ?>public/#">
-                                                    <div class="pull-left">
-                                                        <img src="<?= base_url() ?>public/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                                                    </div>
-                                                    <h4>
-                                                        AdminLTE Design Team
-                                                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?= base_url() ?>public/#">
-                                                    <div class="pull-left">
-                                                        <img src="<?= base_url() ?>public/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                                                    </div>
-                                                    <h4>
-                                                        Developers
-                                                        <small><i class="fa fa-clock-o"></i> Today</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?= base_url() ?>public/#">
-                                                    <div class="pull-left">
-                                                        <img src="<?= base_url() ?>public/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                                                    </div>
-                                                    <h4>
-                                                        Sales Department
-                                                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?= base_url() ?>public/#">
-                                                    <div class="pull-left">
-                                                        <img src="<?= base_url() ?>public/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                                                    </div>
-                                                    <h4>
-                                                        Reviewers
-                                                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="<?= base_url() ?>public/#">See All Messages</a></li>
-                                </ul>
-                            </li>
+                       
                             <!-- Notifications: style can be found in dropdown.less -->
                             <li class="dropdown notifications-menu">
                                 <a href="<?= base_url() ?>public/#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning">10</span>
+                                    <span class="label label-warning">{totalNotificaciones}</span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header">You have 10 notifications</li>
+                                    <li class="header">Usted tiene {totalNotificaciones} notificaciones</li>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
                                             <li>
-                                                <a href="<?= base_url() ?>public/#">
-                                                    <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                                <a href="<?= base_url() ?>#">
+                                                    <i class="fa fa- fa-calendar-times-o text-gray"></i> <span class="label label-default">{vencidos}</span> productos vencidos
+                                                </a>
+                                            </li>
+                                           
+                                            <li>
+                                                <a href="<?= base_url() ?>#">
+                                                    <i class="fa fa-calendar-minus-o text-info"></i> <span class="label label-info">{porVencerse}</span> productos por vencerse
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="<?= base_url() ?>public/#">
-                                                    <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                                                    page and may cause design problems
+                                                <a href="<?= base_url() ?>#">
+                                                    <i class="fa fa-battery-empty text-red"></i> <span class="label label-danger">{agotados}</span> productos agotados
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="<?= base_url() ?>public/#">
-                                                    <i class="fa fa-users text-red"></i> 5 new members joined
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?= base_url() ?>public/#">
-                                                    <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?= base_url() ?>public/#">
-                                                    <i class="fa fa-user text-red"></i> You changed your username
+                                                <a href="<?= base_url() ?>#">
+                                                    <i class="fa fa-battery-1 text-orange"></i><span class="label label-warning">{porAgotarse}</span> productos  por agotarse
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="footer"><a href="<?= base_url() ?>public/#">View all</a></li>
+                                    <li class="footer"><a href="<?= base_url() ?>#"></a></li>
                                 </ul>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
                             <li class="dropdown tasks-menu">
-                                <a href="<?= base_url() ?>public/#" class="dropdown-toggle" data-toggle="dropdown">
+                                <a href="<?= base_url() ?>#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-flag-o"></i>
                                     <span class="label label-danger">9</span>
                                 </a>
@@ -437,15 +359,15 @@
             <div class="content-wrapper">
                 <h5 class="label-default text-center">{heading}</h5>
                 {contenido}
-                
+
             </div>
             <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 1.0
-    </div>
-    <strong>Copyright &copy; 2017 <a href="">Immerpro</a>.</strong> All rights
-    reserved.
-  </footer>
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 1.0
+                </div>
+                <strong>Copyright &copy; 2017 <a href="">Immerpro</a>.</strong> All rights
+                reserved.
+            </footer>
             <!-- ./wrapper -->
 
             <!-- jQuery 3 -->

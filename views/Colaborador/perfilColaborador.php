@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-lg-3"></div>
                             <div class="col-6">
-                                <?php echo form_open('ColaboradorController/actualizarPerfilCola'); ?>
+                               
                                 <input type="hidden" name="idUsuario" value="<?= $this->session->userdata('idUsuario') ?>">
                                 <p class="badge badge-orange">Rol</p><p><?= $mrol->tipoRol ?><br><br>
                                 <p class="badge badge-green">Nombre Completo</p><p><input type="text" class="form-control" name="txtNombCompl" value="<?php echo $perfil->nombreCompleto; ?>" data-parsley-required="true" data-parsley-trigger="keyup" data-parsley-length="[6, 10]" ></p><br><br>
@@ -43,7 +43,6 @@
 
                         </div>
                         <div class="flex-center">
-                            <button type="submit" class="btn btn-orange waves-effect orange" name="btnEditarPerfilColabora"><i class='fa fa-edit'> Actualizar Perfil Colaborador</i></button>
                         </div>
 
                     </div>

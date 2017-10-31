@@ -87,11 +87,7 @@
                     <h3 class="box-title box-warning">Productos</h3>
                 </div>
                 <!-- /.box-header -->
-                
-                        
-                            
-
-                            <div class=" form-group" style="margin-left: 50px;">
+                        <div class=" form-group" style="margin-left: 50px;">
                                 <label for="buscar" class="badge badge-warning"> <i class="fa fa-search"></i> busqueda</label>
                                 <br>
                                 <input style="width: 350px;" type="search" name="txtbuscar" id="buscar" required="required" class="form-control" data-parsley-required="true">

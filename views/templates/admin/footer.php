@@ -57,5 +57,10 @@
     })
   })
 </script>
+<script>
+    $(document).ready(function () {
+        $('form').parsley();
+    });
+</script>
     </body>
 </html>

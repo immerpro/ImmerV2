@@ -29,7 +29,7 @@ class ColaboradorController extends CI_Controller {
 
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/menu', $data);
-        $this->load->view('Colaborador/perfilColaborador');
+        $this->load->view('Admin/perfilAdmin',$data);
         $this->load->view('templates/admin/footer');
     }
 

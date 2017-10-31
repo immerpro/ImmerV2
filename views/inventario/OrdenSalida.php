@@ -39,7 +39,7 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title box-warning">Listado de Proveedores</h3>
+                <h3 class="box-title box-warning">Listado de salida de productos</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">

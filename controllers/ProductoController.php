@@ -1,13 +1,19 @@
 <?php
+
 class ProductoController extends CI_Controller {
+
     public function __construct() {
         parent::__construct();
     }
+
     // metodo que ejecuta la vista principal
     public function index($numPag = 0) {
         if ($this->session->userdata('rol') == NULL) {
             redirect(base_url() . 'iniciar');
         }
+            $notificaciontotal = $this->inventario_model->cantidadVencidos()->cantVencido+$this->inventario_model->cantidadXVencerse()->cuantovencerse+$this->inventario_model->cantidadAgotados()->agotados+$this->inventario_model->cantidadXAgotarse()->cuantoAgotarse;   
+
+
 //        $idProducto = $this->uri->segment(3);
         //creamos la salida del html a la vista con ob_get_contents
         //que lo que hace es imprimir el html
@@ -19,18 +25,24 @@ class ProductoController extends CI_Controller {
         //y así poder mostrar tanto los links como la tabla
         // datos para inactivar un producto
 //        $idProducto = $this->uri->segment(3);
+        
+
         $data = array(
             'div1' => " <div id='pagina'>",
             'table' => $initial_content,
             'titulo' => "producto",
             'es_usuario_normal' => FALSE,
+            'totalNotificaciones' => $notificaciontotal,
+            'vencidos' => $this->inventario_model->cantidadVencidos()->cantVencido,
+            'porVencerse' => $this->inventario_model->cantidadXVencerse()->cuantovencerse,
+            'agotados' => $this->inventario_model->cantidadAgotados()->agotados,
+            'porAgotarse' => $this->inventario_model->cantidadXAgotarse()->cuantoAgotarse,
             'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))
         );
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/menu', $data);
         $this->load->view('productos/index', $data);
         $this->load->view('templates/admin/footer');
-
     }
 
     public function pagina($numPag = 0) {
@@ -107,20 +119,14 @@ class ProductoController extends CI_Controller {
                         $productos_item['Existencias'] = "<span class='badge label-info'>" . $productos_item['Existencias'] . "</span>";
                     }
                     $this->table->add_row(
-                            $productos_item['NombreProducto'], 
-                            $productos_item['DescripcionProducto'], 
-                            $productos_item['minimoStock'], 
-                            $productos_item['MaximoStock'], 
-                            $productos_item['Existencias'], 
-                            $productos_item['NombreSubcategoria'],
-                            $productos_item['NombreCategoria']
+                            $productos_item['NombreProducto'], $productos_item['DescripcionProducto'], $productos_item['minimoStock'], $productos_item['MaximoStock'], $productos_item['Existencias'], $productos_item['NombreSubcategoria'], $productos_item['NombreCategoria']
                     );
                 }
                 $this->jquery_pagination->initialize($config);
-                                        //cargamos la paginación con los links
-                        $html = $this->table->generate() .
-                                $this->jquery_pagination->create_links();
-                                        echo $html;
+                //cargamos la paginación con los links
+                $html = $this->table->generate() .
+                        $this->jquery_pagination->create_links();
+                echo $html;
             } else {
                 echo "<p class='lead'>No hay productos</p>";
             }
@@ -136,42 +142,36 @@ class ProductoController extends CI_Controller {
                         $productos_item['Existencias'] = "<span class='badge label-info'>" . $productos_item['Existencias'] . "</span>";
                     }
                     $this->table->add_row(
-                            $productos_item['NombreProducto'],
-                            $productos_item['DescripcionProducto'], 
-                            $productos_item['minimoStock'], 
-                            $productos_item['MaximoStock'],
-                            $productos_item['Existencias'], 
-                            $productos_item['NombreSubcategoria'],
-                            $productos_item['NombreCategoria'],
-                            'Modificar <a class="teal-text" href=' . base_url() . 'ProductoController/editar/' . $productos_item['idProducto'] . '><i class="fa fa-pencil "></i></a>'
+                            $productos_item['NombreProducto'], $productos_item['DescripcionProducto'], $productos_item['minimoStock'], $productos_item['MaximoStock'], $productos_item['Existencias'], $productos_item['NombreSubcategoria'], $productos_item['NombreCategoria'], 'Modificar <a class="teal-text" href=' . base_url() . 'ProductoController/editar/' . $productos_item['idProducto'] . '><i class="fa fa-pencil "></i></a>'
                             . nbs(3) . 'Inactivar <a class="text-red" href=' . base_url() . 'ProductoController/modal/' . $productos_item['idProducto'] . '><i class="fa fa-times" ></i></a>');
                 }
                 $this->jquery_pagination->initialize($config);
-                                        //cargamos la paginación con los links
-                        $html = $this->table->generate() .
-                                $this->jquery_pagination->create_links();
-                
-                        echo $html;
+                //cargamos la paginación con los links
+                $html = $this->table->generate() .
+                        $this->jquery_pagination->create_links();
+
+                echo $html;
             } else {
                 echo "<p class='lead'>No hay productos</p>";
             }
         }
-       
     }
 
 // metodo que ejecuta la vista para ingresar datos
     public function nuevoProducto() {
+        $notificaciontotal = $this->inventario_model->cantidadVencidos()->cantVencido + $this->inventario_model->cantidadXVencerse()->cuantovencerse + $this->inventario_model->cantidadAgotados()->agotados + $this->inventario_model->cantidadXAgotarse()->cuantoAgotarse;
+
         if ($this->session->userdata('rol') == NULL) {
             redirect(base_url() . 'iniciar');
         }
         $data = array(
-            'page_title' => 'nuevo producto',    
-            'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))->NombreUsuario ,
+            'page_title' => 'nuevo producto',
+            'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))->NombreUsuario,
             'subcategorias' => $this->subcategoria_model->obtenerSubCategorias(),
             'categorias_select' => $this->categoria_model->traerCategoriasXSubcategoria(),
         );
-        
-               /* asigno reglas de validacion 1parametro=> name del campo del formulario 
+
+        /* asigno reglas de validacion 1parametro=> name del campo del formulario 
          * 2parametro=> titulo validacion 
           3parametro restricciones */
         $this->form_validation->set_rules('txtDescripcion', 'Descripción', 'required|trim|max_length[300]');
@@ -182,7 +182,7 @@ class ProductoController extends CI_Controller {
         $this->form_validation->set_rules('txtExits', 'existencias', 'required|integer|less_than[' . $this->input->post('txtMaximo') . ']');
 
         // validaciones para el detalle de producto txtLote 
-      
+
         $this->form_validation->set_rules('txtLote', 'lote', 'required');
         $this->form_validation->set_rules('fvencimiento', 'Fecha de Vencimiento', 'required|callback_verificar_fecha');
 // FIN VALIDACION DETALLE
@@ -219,7 +219,6 @@ class ProductoController extends CI_Controller {
                 $this->session->set_flashdata('incorrecto', 'El producto no  esta  creado');
             }
             $this->parser->parse('templates/producto_layout', $data);
-            
         }
     }
 
@@ -236,10 +235,18 @@ class ProductoController extends CI_Controller {
 
 // metodo que ejecuta la vista de edicion de productos
     public function editar() {
+        $notificaciontotal = $this->inventario_model->cantidadVencidos()->cantVencido + $this->inventario_model->cantidadXVencerse()->cuantovencerse + $this->inventario_model->cantidadAgotados()->agotados + $this->inventario_model->cantidadXAgotarse()->cuantoAgotarse;
+
         if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') != 1) {
             redirect(base_url() . 'iniciar');
         }
-        $dato = ['titulo' => " Editar producto", 'es_usuario_normal' => FALSE, 'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))];
+        $dato = ['titulo' => " Editar producto", 'es_usuario_normal' => FALSE,
+            'totalNotificaciones' => $notificaciontotal,
+            'vencidos' => $this->inventario_model->cantidadVencidos()->cantVencido,
+            'porVencerse' => $this->inventario_model->cantidadXVencerse()->cuantovencerse,
+            'agotados' => $this->inventario_model->cantidadAgotados()->agotados,
+            'porAgotarse' => $this->inventario_model->cantidadXAgotarse()->cuantoAgotarse,
+            'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))];
 
 //        $data['subcategorias'] = $this->subcategoria_model->obtenerSubCategorias();
 
@@ -314,6 +321,7 @@ class ProductoController extends CI_Controller {
             redirect('producto');
         }
     }
+
     // muestra la vista de modal 
     public function modal() {
         $idProducto = $this->uri->segment(3);

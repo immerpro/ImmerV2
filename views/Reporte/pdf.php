@@ -296,7 +296,7 @@
         <?php else: ?>
             <p class="textErr">No hay informacion que cumpla con el criterio seleccionado </p>
         <?php endif; ?> 
-        <a href="<?php echo base_url() ?>admin">volver a inicio</a><br>
+        <a href="<?php echo base_url() ?>Welcome">volver a inicio</a><br>
 
 
     </body>

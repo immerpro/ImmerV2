@@ -84,12 +84,16 @@ class Welcome extends CI_Controller {
         </section>
        
 ';
-       
+    $notificaciontotal = $this->inventario_model->cantidadVencidos()->cantVencido+$this->inventario_model->cantidadXVencerse()->cuantovencerse+$this->inventario_model->cantidadAgotados()->agotados+$this->inventario_model->cantidadXAgotarse()->cuantoAgotarse;   
         $data = array(
             'page_title' => 'ImmerPro- Admin',
             'heading' => 'Bienvenido Administrador(a)'.$this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))->nombreCompleto,
             'contenido' => $template1,
-     
+            'totalNotificaciones'=>$notificaciontotal,
+            'vencidos'=>$this->inventario_model->cantidadVencidos()->cantVencido,
+            'porVencerse'=>$this->inventario_model->cantidadXVencerse()->cuantovencerse,
+            'agotados'=>$this->inventario_model->cantidadAgotados()->agotados,
+            'porAgotarse'=>$this->inventario_model->cantidadXAgotarse()->cuantoAgotarse,
             'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))->NombreUsuario 
         );
         $this->parser->parse('templates/layout', $data);

@@ -1,70 +1,58 @@
 <style>
     .imagencard{
         width: 350px;
-        height: 250px;
+        height: 150px;
     }
 </style>
-
-<h1 class="h1-responsive text-center orange-text">Bienvenido <?php echo $perfil->nombreCompleto; ?></h1>
+ <div style="height: 4vh"></div>
+<h1 class="h1-responsive text-center text-orange">Bienvenido(a) <?php echo $perfil->nombreCompleto; ?></h1>
 <!-- ****** Team Section****** -->
+ <div style="height: 4vh"></div>
 <div class="container">
-    <section class="section">
+    <section class="content">
         <div class="row">
             <div class="col-md-5">
-                <!--Card-->
-                <div class="card testimonial-card">
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">
+                            <div class="avatar"><img src="<?PHP echo base_url(); ?>/public/img/market2.jpg" class="mx-auto d-block imagencard" alt="img"></div>
+                        </h3>
 
-                    <!--Bacground color-->
-                    <div class="card-up indigo lighten-1">
+
+                        <!-- /.box-tools -->
                     </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <p><i class="fa fa-quote-left text-success"></i> permite el registro y consulta de los productos del minimercado </p>
 
-                    <!--Avatar-->
-                    <div class="avatar"><img src="<?PHP echo base_url(); ?>/public/img/market2.jpg" class="mx-auto d-block imagencard" alt="img">
                     </div>
-
-                    <div class="card-body">
-                        <!--Name-->
-                        <h4 class="card-title">Producto</h4>
-                        <hr>
-                        <!--Quotation-->
-                        <p><i class="fa fa-quote-left"></i> permite el registro y consulta de los productos del minimercado </p>
-                    </div>
-
+                    <!-- /.box-body -->
                 </div>
-                <!--/.Card-->
-
-            </div>
-            <div class="col-md-5">
-                <!--Card-->
-                <div class="card testimonial-card">
-
-                    <!--Bacground color-->
-                    <div class="card-up indigo lighten-1">
+                <!-- /.box -->
+            </div>   
+             <div class="col-md-5">
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">
+                            <div class="avatar"><img src="<?PHP echo base_url(); ?>/public/img/woman_market_2.jpg" class="mx-auto d-block imagencard" alt="img">
                     </div>
+                        </h3>
 
-                    <!--Avatar-->
-                    <div class="avatar"><img src="<?PHP echo base_url(); ?>/public/img/woman_market_2.jpg" class="mx-auto d-block imagencard" alt="img">
+
+                        <!-- /.box-tools -->
                     </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                       <p><i class="fa fa-quote-left"></i>podra registrar y consultar  ordenes de salida </p>
 
-                    <div class="card-body">
-                        <!--Name-->
-                        <h4 class="card-title">Orden Salida</h4>
-                        <hr>
-                        <!--Quotation-->
-                        <p><i class="fa fa-quote-left"></i>podra registrar y consultar </p>
                     </div>
-
+                    <!-- /.box-body -->
                 </div>
-                <!--/.Card-->
-
-            </div>
-
+                <!-- /.box -->
+            </div>  
         </div>
-
-
     </section>
-
 </div>
 
-    
-    
+
+

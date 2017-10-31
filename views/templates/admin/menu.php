@@ -96,47 +96,42 @@
                             </ul>
                         </li>
                         <!-- Notifications: style can be found in dropdown.less -->
-                        <li class="dropdown notifications-menu">
-                            <a href="<?= base_url() ?>public/#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">10</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 10 notifications</li>
-                                <li>
-                                    <!-- inner menu: contains the actual data -->
-                                    <ul class="menu">
-                                        <li>
-                                            <a href="<?= base_url() ?>public/#">
-                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="<?= base_url() ?>public/#">
-                                                <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                                                page and may cause design problems
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="<?= base_url() ?>public/#">
-                                                <i class="fa fa-users text-red"></i> 5 new members joined
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="<?= base_url() ?>public/#">
-                                                <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="<?= base_url() ?>public/#">
-                                                <i class="fa fa-user text-red"></i> You changed your username
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="footer"><a href="<?= base_url() ?>public/#">View all</a></li>
-                            </ul>
-                        </li>
+                         <li class="dropdown notifications-menu">
+                                <a href="<?= base_url() ?>public/#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-bell-o"></i>
+                                    <span class="label label-warning"><?= $totalNotificaciones ?></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">Usted tiene <?=$totalNotificaciones ?> notificaciones</li>
+                                    <li>
+                                        <!-- inner menu: contains the actual data -->
+                                        <ul class="menu">
+                                            <li>
+                                                <a href="<?= base_url() ?>#">
+                                                    <i class="fa fa- fa-calendar-times-o text-gray"></i> <span class="label label-default"><?=$vencidos?></span> productos vencidos
+                                                </a>
+                                            </li>
+                                           
+                                            <li>
+                                                <a href="<?= base_url() ?>#">
+                                                    <i class="fa fa-calendar-minus-o text-info"></i> <span class="label label-info"><?=$porVencerse?></span> productos por vencerse
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="<?= base_url() ?>#">
+                                                    <i class="fa fa-battery-empty text-red"></i> <span class="label label-danger"><?=$agotados?></span> productos agotados
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="<?= base_url() ?>#">
+                                                    <i class="fa fa-battery-1 text-orange"></i><span class="label label-warning"><?=$porAgotarse?></span> productos  por agotarse
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="<?= base_url() ?>#"></a></li>
+                                </ul>
+                            </li>
                         <!-- Tasks: style can be found in dropdown.less -->
                         <li class="dropdown tasks-menu">
                             <a href="<?= base_url() ?>public/#" class="dropdown-toggle" data-toggle="dropdown">
@@ -234,29 +229,31 @@
                                 <!-- Menu Body -->
                                 <li class="user-body">
                                     <div class="row">
-                                        
+                                        <?php if ($this->session->userdata('rol') == 1): ?>
                                             <div class="col-xs-4 text-center">
                                                 <a href="<?= site_url('habilita') ?>">Habilitar Colaborador</a>
                                             </div>
-                                       
+                                        <?php endif; ?>
                                         <div class="col-xs-4 text-center">
                                             <a href="#"></a>
                                         </div>
-                                        <div class="col-xs-4 text-center">
-                                            
+                                        <?php if ($this->session->userdata('rol') == 1): ?>
+                                            <div class="col-xs-4 text-center">
+
                                                 <a href="<?= site_url('registro') ?>">Registrar Colaborador</a>
-                                         
-                                        </div>
+
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                     <!-- /.row -->
                                 </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        
-                                            <a href="<?= site_url('perfiladmin') ?>" class="btn btn-default btn-flat">Perfil</a>
-                                        </div>
-                                  
+
+                                        <a href="<?= site_url('perfiladmin') ?>" class="btn btn-default btn-flat">Perfil</a>
+                                    </div>
+
                                     <div class="pull-right">
                                         <a href="<?= site_url('salir') ?>" class="btn btn-default btn-flat">Cerrar sesiòn</a>
                                     </div>
@@ -298,40 +295,43 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
-                  
+
                     <li class="treeview">
-                        <a href="<?= base_url() ?>public/#">
-                            <i class="fa fa-briefcase text-orange"></i> <span>Categoría</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu skin-green">
-
-                            <li class="active"><a href="<?php echo site_url('categoria/crear'); ?>"><i class="fa fa-plus text-orange"></i> Nueva</a></li>
-                            <li><a href="<?php echo site_url('categoria'); ?>"><i class="fa fa-search text-orange"></i> Listar</a></li>
-
-                        </ul>
-                    </li>
-                   
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-files-o text-orange"></i>
-                                <span>Producto</span>
+                        <?php if ($this->session->userdata('rol') == 1): ?>
+                            <a href="<?= base_url() ?>public/#">
+                                <i class="fa fa-briefcase text-orange"></i> <span>Categoría</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
-                            <ul class="treeview-menu">
+                            <ul class="treeview-menu skin-green">
 
-                                <li><a href="<?php echo site_url('nuevoProducto'); ?>"><i class="fa fa-plus text-orange"></i> Nuevo</a></li>
-                                <li><a href="<?php echo site_url('producto'); ?>"><i class="fa fa-search text-orange"></i> Consultar</a></li>
-
+                                <li class="active"><a href="<?php echo site_url('categoria/crear'); ?>"><i class="fa fa-plus text-orange"></i> Nueva</a></li>
+                                <li><a href="<?php echo site_url('categoria'); ?>"><i class="fa fa-search text-orange"></i> Listar</a></li>
 
                             </ul>
-                        </li>
-                    
-                        <li class="treeview">
+                        <?php endif; ?>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-files-o text-orange"></i>
+                            <span>Producto</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+
+                            <li><a href="<?php echo site_url('nuevoProducto'); ?>"><i class="fa fa-plus text-orange"></i> Nuevo</a></li>
+                            <li><a href="<?php echo site_url('producto'); ?>"><i class="fa fa-search text-orange"></i> Consultar</a></li>
+
+
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <?php if ($this->session->userdata('rol') == 1): ?>
                             <a href="#">
                                 <i class="fa fa-pie-chart text-orange"></i>
                                 <span>Proveedor</span>
@@ -344,8 +344,9 @@
                                 <li><a href="<?php echo site_url('proveedor'); ?>"><i class="fa fa-search text-orange"></i> Consultar</a></li>
 
                             </ul>
-                        </li>
-                   
+                        <?php endif; ?>
+                    </li>
+
                     <li class="treeview">
                         <a href="<?= base_url() ?>public/#">
                             <i class="fa fa-folder text-orange"></i>
@@ -355,17 +356,19 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="treeview">
-                                <a href=""><i class="fa fa-circle-o text-orange"></i> Orden Entrada
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="<?php echo site_url('Entrada'); ?>"><i class="fa fa-plus text-orange"></i> Registrar</a></li>
-                                    <li><a href="<?php echo site_url('Consultar'); ?>"><i class="fa fa-search text-orange"></i> ConsultarConsultar</a></li>
-                                </ul>
-                            </li>
+                            <?php if ($this->session->userdata('rol') == 1): ?>
+                                <li class="treeview">
+                                    <a href=""><i class="fa fa-circle-o text-orange"></i> Orden Entrada
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="<?php echo site_url('Entrada'); ?>"><i class="fa fa-plus text-orange"></i> Registrar</a></li>
+                                        <li><a href="<?php echo site_url('Consultar'); ?>"><i class="fa fa-search text-orange"></i> Consultar</a></li>
+                                    </ul>
+                                </li>
+                            <?php endif; ?>
                             <li class="treeview">
                                 <a href=""><i class="fa fa-circle-o text-orange"></i> Orden Salida
                                     <span class="pull-right-container">
@@ -377,18 +380,21 @@
                                     <li><a href="<?php echo site_url('BuscadorController/index'); ?>"><i class="fa fa-search text-orange"></i> Consultar</a></li>
                                 </ul>
                             </li>
-                            <li><a href="<?php echo site_url('ReporteController/mostrarreporte'); ?>"><i class="fa fa-archive text-orange"></i> Reportes</a></li>
-
+                            <?php if ($this->session->userdata('rol') == 1): ?>
+                                <li><a href="<?php echo site_url('ReporteController/mostrarreporte'); ?>"><i class="fa fa-archive text-orange"></i> Reportes</a></li>
+                            <?php endif; ?>
                         </ul>
 
                     </li>
                     <li>
+                        <?php if ($this->session->userdata('rol') == 1): ?>
                         <a href="<?php echo site_url('recuperadato'); ?>">
                             <i class="fa fa-th text-orange"></i> <span>Restauraciòn</span>
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-orange-active">Datos</small>
                             </span>
                         </a>
+                        <?php endif; ?>
                     </li>
 
                 </ul>

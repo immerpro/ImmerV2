@@ -1,13 +1,17 @@
 <?php
+
 class CategoriaController extends CI_Controller {
+
     public function __construct() {
         parent::__construct();
-       
     }
+
     public function index($numPag = 0) {
         if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') != 1) {
             redirect(base_url() . 'iniciar');
         }
+        $notificaciontotal = $this->inventario_model->cantidadVencidos()->cantVencido + $this->inventario_model->cantidadXVencerse()->cuantovencerse + $this->inventario_model->cantidadAgotados()->agotados + $this->inventario_model->cantidadXAgotarse()->cuantoAgotarse;
+
         //CONFIGURACION DE LA PAGINACION 
         //creamos la salida del html a la vista con ob_get_contents
         //que lo que hace es imprimir el html
@@ -32,6 +36,11 @@ class CategoriaController extends CI_Controller {
             'table' => $initial_content,
             'titulo' => "Categoria",
             'es_usuario_normal' => FALSE,
+            'totalNotificaciones' => $notificaciontotal,
+            'vencidos' => $this->inventario_model->cantidadVencidos()->cantVencido,
+            'porVencerse' => $this->inventario_model->cantidadXVencerse()->cuantovencerse,
+            'agotados' => $this->inventario_model->cantidadAgotados()->agotados,
+            'porAgotarse' => $this->inventario_model->cantidadXAgotarse()->cuantoAgotarse,
             'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))
         );
         // cargar la vista
@@ -40,6 +49,7 @@ class CategoriaController extends CI_Controller {
         $this->load->view('Categoria/index', $data);
         $this->load->view('templates/admin/footer');
     }
+
     public function pagina($numPag = 0) {
         $config['base_url'] = base_url('CategoriaController/pagina/');
         $config['div'] = '#pagina'; //asignamos un id al contenedor general
@@ -92,12 +102,9 @@ class CategoriaController extends CI_Controller {
             $this->table->set_heading('Nombre Categoria', 'Detalles', 'Acciones Subcategoria', 'Acciones Categoria');
             foreach ($listadoCategoria as $categoria_item) {
                 $this->table->add_row(
-                        $categoria_item->NombreCategoria,
-                         $categoria_item->detalles, 
-                         'Mira <a class="text-orange" href=' . base_url() . 'CategoriaController/Ver/' . $categoria_item->idCategoria . ' ><i class="fa fa-eye" onmouseover="Subcategoria"></i></a>' .
+                        $categoria_item->NombreCategoria, $categoria_item->detalles, 'Mira <a class="text-orange" href=' . base_url() . 'CategoriaController/Ver/' . $categoria_item->idCategoria . ' ><i class="fa fa-eye" onmouseover="Subcategoria"></i></a>' .
                         ' Agrega <a class="text-blue"  href=' . base_url() . 'CategoriaController/Agregar/' . $categoria_item->idCategoria . '><i class="fa fa-plus"></i></a>', 'Modificar <a class="teal-text" href=' . base_url() . 'CategoriaController/editar/' . $categoria_item->idCategoria . '><i class="fa fa-pencil "></i></a>'
                         . nbs(3) . 'Inactivar <a class="text-red" href=' . base_url() . 'CategoriaController/modal/' . $categoria_item->idCategoria . '><i class="fa fa-times" ></i></a>');
-
             }
             $this->jquery_pagination->initialize($config);
             //cargamos la paginación con los links
@@ -107,7 +114,6 @@ class CategoriaController extends CI_Controller {
         } else {
             echo "<p class='lead'>No hay Categorias creadas</p>";
         }
-       
     }
 
     public function paginacategoria($numPag = 0) {
@@ -163,9 +169,7 @@ class CategoriaController extends CI_Controller {
             $this->table->set_heading('Nombre Categoria', 'Detalles', 'Acciones Subcategoria', 'Acciones Categoria');
             foreach ($listadoCategoria as $categoria_item) {
                 $this->table->add_row(
-                        strip_tags($categoria_item->NombreCategoria), 
-                        $categoria_item->detalles,
-                        'Mira <a class="orange-text" href=' . base_url() . 'CategoriaController/Ver/' . $categoria_item->idCategoria . ' ><i class="fa fa-eye" onmouseover="Subcategoria"></i></a>' .
+                        strip_tags($categoria_item->NombreCategoria), $categoria_item->detalles, 'Mira <a class="orange-text" href=' . base_url() . 'CategoriaController/Ver/' . $categoria_item->idCategoria . ' ><i class="fa fa-eye" onmouseover="Subcategoria"></i></a>' .
                         ' Agrega <a class="blue-text"  href=' . base_url() . 'CategoriaController/Agregar/' . $categoria_item->idCategoria . '><i class="fa fa-plus"></i></a>', 'Modificar <a class="teal-text" href=' . base_url() . 'Categoria/editar/' . $categoria_item->idCategoria . '><i class="fa fa-pencil "></i></a>'
                         . nbs(3) . 'Inactivar <a class="red-text" href=' . base_url() . 'CategoriaController/modal/' . $categoria_item->idCategoria . '><i class="fa fa-times" ></i></a>');
             }
@@ -177,18 +181,25 @@ class CategoriaController extends CI_Controller {
         } else {
             echo "<p class='lead'>No hay Categorias creadas</p>";
         }
-      
     }
+
     // ingresar categorias
     public function InCategoria() {
         if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') != 1) {
             redirect(base_url() . 'iniciar');
         }
+        $notificaciontotal = $this->inventario_model->cantidadVencidos()->cantVencido + $this->inventario_model->cantidadXVencerse()->cuantovencerse + $this->inventario_model->cantidadAgotados()->agotados + $this->inventario_model->cantidadXAgotarse()->cuantoAgotarse;
+
         $data['categorias'] = $this->categoria_model->traerCategorias();
         $data['titulo'] = " crear categoria";
         $data['Mensaje'] = "Categoria creada correctamente";
         $data['es_usuario_normal'] = FALSE;
         $data['perfil'] = $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'));
+        $data['totalNotificaciones'] = $notificaciontotal;
+        $data['vencidos'] = $this->inventario_model->cantidadVencidos()->cantVencido;
+        $data['porVencerse'] = $this->inventario_model->cantidadXVencerse()->cuantovencerse;
+        $data['agotados'] = $this->inventario_model->cantidadAgotados()->agotados;
+        $data['porAgotarse'] = $this->inventario_model->cantidadXAgotarse()->cuantoAgotarse;
         $this->form_validation->set_rules('NombreCategoria', 'NombreCategoria', 'required|htmlentities|is_unique[categoria.NombreCategoria ]');
         $this->form_validation->set_rules('txtdetalle', 'detalle', 'required|trim');
         $this->form_validation->set_message('required', 'El campo %s es obligatorio');
@@ -211,25 +222,36 @@ class CategoriaController extends CI_Controller {
             $this->load->view('templates/admin/footer');
         }
     }
+
     // ver las subcategorias asociadas a una categoria
     public function ver($id) {
         if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') != 1) {
             redirect(base_url() . 'iniciar');
         }
+        $notificaciontotal = $this->inventario_model->cantidadVencidos()->cantVencido + $this->inventario_model->cantidadXVencerse()->cuantovencerse + $this->inventario_model->cantidadAgotados()->agotados + $this->inventario_model->cantidadXAgotarse()->cuantoAgotarse;
+
         $data['categorias'] = $this->subcategoria_model->Versub($id);
         $data['titulo'] = " ver subcategoria";
         $data['es_usuario_normal'] = FALSE;
         $data['perfil'] = $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'));
+        $data['totalNotificaciones'] = $notificaciontotal;
+        $data['vencidos'] = $this->inventario_model->cantidadVencidos()->cantVencido;
+        $data['porVencerse'] = $this->inventario_model->cantidadXVencerse()->cuantovencerse;
+        $data['agotados'] = $this->inventario_model->cantidadAgotados()->agotados;
+        $data['porAgotarse'] = $this->inventario_model->cantidadXAgotarse()->cuantoAgotarse;
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/menu', $data);
         $this->load->view('Categoria/Ver');
         $this->load->view('templates/admin/footer');
     }
+
 // vista para agregar la subcategoria
     public function Agregar() {
         if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') != 1) {
             redirect(base_url() . 'iniciar');
         }
+        $notificaciontotal = $this->inventario_model->cantidadVencidos()->cantVencido + $this->inventario_model->cantidadXVencerse()->cuantovencerse + $this->inventario_model->cantidadAgotados()->agotados + $this->inventario_model->cantidadXAgotarse()->cuantoAgotarse;
+
         $mostrarNombre = $this->categoria_model->nombrecategoria($this->uri->segment(3));
         foreach ($mostrarNombre->result() as $fila) {
             $nombreCategoria = $fila->NombreCategoria;
@@ -237,6 +259,11 @@ class CategoriaController extends CI_Controller {
         $agr = ['titulo' => 'agregarsubcategoria',
             'codcategoria' => $this->uri->segment(3),
             'nombrecategoria' => $nombreCategoria,
+            'totalNotificaciones' => $notificaciontotal,
+            'vencidos' => $this->inventario_model->cantidadVencidos()->cantVencido,
+            'porVencerse' => $this->inventario_model->cantidadXVencerse()->cuantovencerse,
+            'agotados' => $this->inventario_model->cantidadAgotados()->agotados,
+            'porAgotarse' => $this->inventario_model->cantidadXAgotarse()->cuantoAgotarse,
             'es_usuario_normal' => FALSE,
             'perfil' => $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'))];
 
@@ -252,6 +279,11 @@ class CategoriaController extends CI_Controller {
         }
         $dato = ['titulo' => " Editar Categoria", 'es_usuario_normal' => FALSE];
         $dato['perfil'] = $this->usuario_model->consultarPerfil($this->session->userdata('idUsuario'));
+         $dato['totalNotificaciones'] = $notificaciontotal;
+        $dato['vencidos'] = $this->inventario_model->cantidadVencidos()->cantVencido;
+        $dato['porVencerse'] = $this->inventario_model->cantidadXVencerse()->cuantovencerse;
+        $dato['agotados'] = $this->inventario_model->cantidadAgotados()->agotados;
+        $dato['porAgotarse'] = $this->inventario_model->cantidadXAgotarse()->cuantoAgotarse;
         $idCategoria = $this->uri->segment(3);
         $obtenerCategoria = $this->categoria_model->obtener_categoria_a_modificar($idCategoria);
         if ($obtenerCategoria != FALSE) {
@@ -273,6 +305,7 @@ class CategoriaController extends CI_Controller {
         $this->load->view('Categoria/Actualizacategoria', $data);
         $this->load->view('templates/admin/footer');
     }
+
     public function CategoriaActualizada() {
         if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') != 1) {
             redirect(base_url() . 'iniciar');
@@ -295,6 +328,7 @@ class CategoriaController extends CI_Controller {
 
         redirect('categoria');
     }
+
     public function modal() {
         if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') != 1) {
             redirect(base_url() . 'iniciar');
@@ -314,6 +348,7 @@ class CategoriaController extends CI_Controller {
         $this->load->view('templates/admin/header', $info_modal);
         $this->load->view('categoria/modal', $info_modal);
     }
+
 // inactiva las categorias
     public function inactivar($id) {
         if ($this->session->userdata('rol') == NULL || $this->session->userdata('rol') != 1) {
@@ -322,4 +357,5 @@ class CategoriaController extends CI_Controller {
         $this->categoria_model->inactivarcategoria($id);
         redirect('categoria');
     }
+
 }

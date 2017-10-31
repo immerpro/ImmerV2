@@ -25,8 +25,8 @@
             </div>
             <!--Footer-->
             <div class="modal-footer">
-                <a href="<?php echo base_url() ?>proveedor"><button type="button" class="btn btn-secondary" >Cancelar</button></a>
-                <button type="submit" class="btn btn-blue-grey">Inactivar</button>
+                <a href="<?php echo base_url() ?>proveedor"><button type="button" class="btn bg-navy" >Cancelar</button></a>
+                <button type="submit" class="btn bg-olive">Inactivar</button>
             </div>
         </div>
         <!--/.Content-->

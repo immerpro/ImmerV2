@@ -9,13 +9,13 @@
                 <div class="box-body">
                     <?php echo form_open('CategoriaController'); ?>
                     <div class="md-form form-group">
-                        <label for="buscar" class="badge badge-warning"> busqueda</label>
+                        <label for="buscar" class="h4 badge-warning">categoria a buscar </label>
 
                         <input type="search" name="txtbuscar" id="buscar" required="required" class="form-control" data-parsley-required="true">
                     </div>  
 
                     <div class="form-group">
-                        <button class="btn bg-orange " type="submit"> <i class="fa fa-search"></i>  Buscar</button>
+                        <button class="btn bg-orange " type="submit"> <i class="fa fa-search"></i> realizar busqueda</button>
                     </div>
                 </div>
                 <!-- /.box-body -->
